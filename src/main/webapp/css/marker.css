@@ -1,0 +1,26 @@
+
+#snpmarkertbl table,th,td {
+	font-size: 10px;
+	border: 1px #CFCFCF solid;
+	border-collapse : collapse;
+	text-align:center;
+	background-color: white;
+}
+
+#snpmarkertbl th {
+	background-color: silver;	
+	font-weight: bold;
+}
+
+#pager {
+	padding:10px;
+	text-align: center;
+}
+
+input {
+	border: 1px #CFCFCF solid;	
+}
+
+input.num {
+	text-align:right;
+}
