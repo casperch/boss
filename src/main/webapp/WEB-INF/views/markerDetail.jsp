@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" type="text/css" media="screen"
 	href="css/marker.css" />
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <style>
 <!--
 table {
@@ -36,10 +36,26 @@ td {
 H6 { font-size: 15px;}
 </style>
 
+<script>
+
+	$(document).ready(function(){		
+		$("a[data-name='detail_veiw']").click(function(){
+			var url = "markerDetail?chrom=";
+			var chrom = $(this).attr('data-chrom');
+			var loci = $(this).attr('data-loci');
+			url += chrom;
+			url += "&loci=" + loci;
+			alert(url);
+			location.href=url;
+		});
+	});	
+
+</script>
+
 </head>
 <body>
 	<div id="markerInfo">
-		<h6>Marker Infomation</h6>
+		<h6>Marker Information</h6>
 		<table>
 			<tr>
 				<th>ID.</th>
@@ -87,7 +103,7 @@ H6 { font-size: 15px;}
 						<td>${t_marker.loci}</td>
 						<td>${t_marker.type}</td>
 						<td>${t_marker.tags}</td>
-						<td><a data-name="detail_veiw" href="#">view</a></td>
+						<td><a data-name="detail_veiw" data-chrom="${t_marker.chrom}" data-loci="${t_marker.loci }" href="#">view</a></td>
 					</tr>
 				</c:forEach>
 			</table>

@@ -12,7 +12,6 @@ import kr.re.kribb.model.MarkerVO;
 import kr.re.kribb.model.SSR_Marker;
 import kr.re.kribb.model.SnpMarker;
 import kr.re.kribb.model.TmVO;
-import kr.re.kribb.model.Trait;
 import kr.re.kribb.service.ChrInfo;
 import kr.re.kribb.service.GeneInfoService;
 import kr.re.kribb.service.GffReader;

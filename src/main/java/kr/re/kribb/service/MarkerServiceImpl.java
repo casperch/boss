@@ -1,6 +1,8 @@
 package kr.re.kribb.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -308,13 +310,14 @@ public class MarkerServiceImpl implements MarkerService {
 			markers.addAll(snpMarkers);
 			markers.addAll(inDel_Markers);
 			markers.addAll(ssr_Markers);
+			Collections.sort(markers, new LociAscCompare());
 
 			List<GffRecord> gffRecords = gffReader.query(marker.getChrom(),
 					startEnd[0], startEnd[1]);
 			imgName = geneStructureMap.drawGeneStructure(startEnd,
 					gffRecords, marker, markers);
 		}
-
+		
 		retValue.put("imgName", imgName);
 		retValue.put("markers", markers);
 
@@ -324,6 +327,7 @@ public class MarkerServiceImpl implements MarkerService {
 
 	@Override
 	public HashMap<String, String> getTraits() {
+		
 		// TODO Auto-generated method stub
 		List<Trait> traits = traitMapper.selectTraits();
 		HashMap<String, String> traitMap = new HashMap<String, String>();
@@ -332,5 +336,15 @@ public class MarkerServiceImpl implements MarkerService {
 			traitMap.put(trait.getCode(), trait.getTrait());			
 		}
 		return traitMap;		
+	}
+	
+	static class LociAscCompare implements Comparator<Marker> {
+
+		@Override
+		public int compare(Marker m1, Marker m2) {
+			// TODO 마커 loci 오름차순
+			return m1.getLoci() < m2.getLoci() ? -1 : m1.getLoci() > m2.getLoci() ? 1 : 0;
+		}
+		
 	}
 }

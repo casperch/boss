@@ -52,8 +52,16 @@ td {
 	$(document).ready(function() {
 		//alert("페이지 작업중");
 
-		$("a[data-name='detail']").click(function(){			
-			window.open("markerDetail?chrom=${chrMarkerVO.chrom}&loci="+$(this).attr("data-loci"));
+		$("a[data-name='detail']").click(function(){
+			var url = "markerDetail?chrom=";
+			var chrom = "${chrMarkerVO.chrom}";
+			var loci = $(this).attr("data-loci");
+			var markerType = "${markerType}";
+			url += chrom;
+			url += "&loci=" + loci;
+			url += "&markerType=" + "${chrMarkerVO.markerType}";
+			alert(url);
+			window.open(url);
 		});		
 
 		var canvas = $('canvas.chrCanvas');
